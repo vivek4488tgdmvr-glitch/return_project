@@ -8,14 +8,14 @@
     "userInterfaceStyle": "dark",
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.return.app",
+      "bundleIdentifier": "com.returnapp.mobile",
       "infoPlist": {
         "NSCameraUsageDescription": "Return uses the camera to photograph receipts.",
         "NSPhotoLibraryUsageDescription": "Return reads receipt photos from your library."
       }
     },
     "android": {
-      "package": "com.return.app",
+      "package": "com.returnapp.mobile",
       "permissions": [
         "android.permission.CAMERA",
         "android.permission.POST_NOTIFICATIONS",
