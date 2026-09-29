@@ -1,0 +1,45 @@
+{
+  "expo": {
+    "name": "Return",
+    "slug": "return",
+    "scheme": "return",
+    "version": "1.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.return.app",
+      "infoPlist": {
+        "NSCameraUsageDescription": "Return uses the camera to photograph receipts.",
+        "NSPhotoLibraryUsageDescription": "Return reads receipt photos from your library."
+      }
+    },
+    "android": {
+      "package": "com.return.app",
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.POST_NOTIFICATIONS",
+        "android.permission.RECORD_AUDIO"
+      ]
+    },
+    "plugins": [
+      "expo-router",
+      "expo-notifications",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Return reads receipt photos from your library.",
+          "cameraPermission": "Return uses the camera to photograph receipts."
+        }
+      ]
+    ],
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "1ac0e3c5-a118-4437-bbbd-80f379522bd3"
+      }
+    }
+  }
+}
