@@ -269,7 +269,7 @@ const s = StyleSheet.create({
   scanBtnSub: { color: '#c7d2fe', fontSize: 12, marginTop: 3 },
   previewWrap: { marginTop: 14, borderRadius: 12, overflow: 'hidden', height: 220 },
   preview: { width: '100%', height: 220 },
-  scanWrap: { ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(15,23,42,0.45)' },
+  scanWrap: { ...StyleSheet.absoluteFill, backgroundColor: 'rgba(15,23,42,0.45)' },
   scanLine: { height: 3, backgroundColor: '#818cf8', shadowColor: '#818cf8', shadowOpacity: 1, shadowRadius: 10, elevation: 8 },
   scanLabel: { position: 'absolute', bottom: 12, alignSelf: 'center', flexDirection: 'row', gap: 8, backgroundColor: 'rgba(15,23,42,0.85)', paddingHorizontal: 14, paddingVertical: 8, borderRadius: 999, alignItems: 'center' },
   scanText: { color: '#fff', fontWeight: '700', fontSize: 13 },

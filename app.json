@@ -2,6 +2,7 @@
   "expo": {
     "name": "Return",
     "slug": "return",
+    "icon": "./assets/icon.png",
     "scheme": "return",
     "version": "1.1.0",
     "orientation": "portrait",

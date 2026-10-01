@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Switch, Alert, ScrollView } from 'react-native'
 import { useFocusEffect, useRouter } from 'expo-router';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import {
-  getDemoMode, setDemoMode, getCurrency, setCurrency, loadItems, getForcePro, setForcePro,
+  getDemoMode, setDemoMode, getCurrency, setCurrency, loadItems, 
 } from '../lib/storage';
 import { getIsPro } from '../lib/purchases';
 import { cancelAll, rescheduleAll, sendTestNotification, requestNotifPermission } from '../lib/notifications';
@@ -14,7 +14,7 @@ export default function Settings() {
   const [demo, setDemo] = useState(false);
   const [pro, setPro] = useState(false);
   const [cur, setCur] = useState('$');
-  const [forcePro, setForce] = useState(false);
+  
   const router = useRouter();
 
   useFocusEffect(
@@ -23,7 +23,7 @@ export default function Settings() {
         setDemo(await getDemoMode());
         setPro(await getIsPro());
         setCur(await getCurrency());
-        setForce(await getForcePro());
+        
       })();
     }, [])
   );
@@ -40,14 +40,7 @@ export default function Settings() {
 
   const pickCurrency = async (c: string) => { setCur(c); await setCurrency(c); };
 
-  const testReminder = async () => {
-    if (!(await requestNotifPermission())) {
-      Alert.alert('Notifications are off', 'Allow notifications in your phone settings to get reminders.');
-      return;
-    }
-    await sendTestNotification();
-    Alert.alert('Sent', 'A test reminder will arrive in 5 seconds. Lock your phone to see it.');
-  };
+ 
 
   const clearAllReminders = () =>
     Alert.alert('Cancel all reminders?', 'Scheduled notifications will be removed.', [
@@ -55,11 +48,7 @@ export default function Settings() {
       { text: 'Cancel reminders', style: 'destructive', onPress: () => cancelAll() },
     ]);
 
-  const toggleForce = async (v: boolean) => {
-    setForce(v);
-    await setForcePro(v);
-    setPro(await getIsPro());
-  };
+ 
 
   return (
     <ScrollView style={s.container} contentContainerStyle={{ padding: 20 }}>
@@ -95,23 +84,13 @@ export default function Settings() {
       </Animated.View>
 
       <Animated.View entering={FadeInDown.delay(240).springify().damping(18)} style={{ marginTop: 24 }}>
-        <PressableScale style={s.secondary} onPress={testReminder}>
-          <Text style={s.secondaryText}>Send a test reminder</Text>
-        </PressableScale>
+     
         <PressableScale style={s.danger} onPress={clearAllReminders}>
           <Text style={s.dangerText}>Cancel all reminders</Text>
         </PressableScale>
       </Animated.View>
 
-      {__DEV__ && (
-        <Animated.View entering={FadeInDown.delay(320)} style={{ marginTop: 24 }}>
-          <View style={s.row}>
-            <Text style={s.label}>Dev: force Pro</Text>
-            <Switch value={forcePro} onValueChange={toggleForce} />
-          </View>
-          <Text style={s.hint}>Only shows in development builds. Test a real sandbox purchase before you submit.</Text>
-        </Animated.View>
-      )}
+      
 
       <Text style={s.privacy}>
         Your items and receipt photos stay on this phone. When you scan a receipt, that one photo is sent to an AI service to read it.
